@@ -1,0 +1,4 @@
+{
+    "terminal.integrated.shell.windows": "powershell",
+    "terminal.integrated.shellArgs.windows": ["-NoExit", "-Command", "./Scripts/activate"]
+}
