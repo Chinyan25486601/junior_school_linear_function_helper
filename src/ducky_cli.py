@@ -84,10 +84,11 @@ class ducky_cli(object):
     def process_command(self, sender, raw_command: str):
         raw_command_cutted = raw_command.split(" ")
         command_name = raw_command_cutted[0]
+        args={}
         for middleware in self.middle_wares:
-            raw_command_cutted = middleware(sender, raw_command_cutted, command_name)
+            raw_command_cutted, args = middleware(sender, raw_command_cutted, command_name, args)
         if command_name in self.supported_commands:
-            self.command_table[command_name](self, raw_command_cutted, command_name)
+            self.command_table[command_name](self, raw_command_cutted, command_name, args)
         else:
             pass
 
