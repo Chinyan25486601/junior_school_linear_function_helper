@@ -4,7 +4,7 @@ import re
 
 VERSION="0.1"
 
-def middle_ware(sender: ducky_cli, command, command_name, args):
+def number_parser(sender: ducky_cli, command, command_name, args):
     # TODO:添加对无理数的处理
     try:
         command = [(float(x)) for x in command[1:]]
@@ -51,7 +51,7 @@ def a3(sender: ducky_cli, command, command_name, args):
 
 if __name__=="__main__":
     cli = ducky_cli(welcome_message="Linear Function Helper v{version}\nCopyright © 2021 Qinyan\n".format(version=VERSION))
-    cli.add_middle_ware(middle_ware)
+    cli.add_middle_ware(number_parser)
     cli.add_command_rule("sl", sl)
     cli.add_command_rule("jl", sl)
     cli.add_command_rule("segment_length", sl)
