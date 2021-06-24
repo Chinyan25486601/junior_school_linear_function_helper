@@ -1,5 +1,3 @@
-from decimal import Decimal
-from typing import Tuple
 from sympy import Abs,sqrt,Number,simplify
 
 class Point(object):
@@ -31,8 +29,4 @@ def get_area_of_triangle_from_three_points(p1: Point, p2: Point, p3: Point) :
     return simplify(get_area_of_triangle_from_three_sides(p1p2,p2p3,p1p3))
 
 if __name__=="__main__":
-    print(get_length_of_segment_from_two_points(O, Point(1,1)))
-    print(get_analytic_expression_of_directly_proportional_function_from_one_point(Point(1,1)))
-    print(get_analytic_expression_of_linear_function_from_two_points(Point(0,1),Point(1,2)))
-    print(get_area_of_triangle_from_three_sides(1,1, Decimal(2).sqrt()))
-    print(get_area_of_triangle_from_three_points(O,Point(0,1),Point(1,1)))
+    pass
