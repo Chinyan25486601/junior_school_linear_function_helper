@@ -89,6 +89,7 @@ class ducky_cli(object):
             raw_command_cutted, args = middleware(sender, raw_command_cutted, command_name, args)
         if command_name in self.supported_commands:
             self.command_table[command_name](self, raw_command_cutted, command_name, args)
+            self.output("")
         else:
             pass
 
