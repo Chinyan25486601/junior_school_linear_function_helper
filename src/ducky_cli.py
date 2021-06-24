@@ -29,6 +29,10 @@ class COMMAND_PROCESSING_MODE(Enum):
     DEFAULT = 0
     CUSTOMIZE = 1
 
+class ERROR_MESSAGE_MODE(Enum):
+    USER_DEFINED=0
+    PARAM_ERROR=1
+
 class ducky_cli(object):
     def __init__(self, get_command=None, prompt=">", welcome_message="Welcome to ducky_cli", default_exit_command=True):
         super().__init__()
@@ -99,6 +103,12 @@ class ducky_cli(object):
         for rule in command_rules:
             self.command_table[rule[0]]=rule[1]
             self.supported_commands.append(rule[0])
+
+    def error(self, type: ERROR_MESSAGE_MODE, message=None):
+        if type==ERROR_MESSAGE_MODE.PARAM_ERROR:
+            print("Error: invalid param(s)")
+        elif type==ERROR_MESSAGE_MODE.USER_DEFINED and message!=None:
+            print("Error: "+message)
 
 if __name__=="__main__":
     def test_get_command(sender: ducky_cli, command: str):
