@@ -44,6 +44,8 @@ class ducky_cli(object):
         self.supported_commands = list()
         self.should_exit = False
 
+        self.middle_wares = []
+
         # 添加命令处理程序
         if get_command:
             self.get_command = get_command
@@ -81,8 +83,11 @@ class ducky_cli(object):
 
     def process_command(self, sender, raw_command: str):
         raw_command_cutted = raw_command.split(" ")
-        if raw_command_cutted[0] in self.supported_commands:
-            self.command_table[raw_command_cutted[0]](self, raw_command_cutted)
+        command_name = raw_command_cutted[0]
+        for middleware in self.middle_wares:
+            raw_command_cutted = middleware(sender, raw_command_cutted, command_name)
+        if command_name in self.supported_commands:
+            self.command_table[command_name](self, raw_command_cutted, command_name)
         else:
             pass
 
@@ -103,6 +108,9 @@ class ducky_cli(object):
         for rule in command_rules:
             self.command_table[rule[0]]=rule[1]
             self.supported_commands.append(rule[0])
+
+    def add_middle_ware(self, callback):
+        self.middle_wares.append(callback)
 
     def error(self, type: ERROR_MESSAGE_MODE, message=None):
         if type==ERROR_MESSAGE_MODE.PARAM_ERROR:
