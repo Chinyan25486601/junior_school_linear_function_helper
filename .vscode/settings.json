@@ -1,4 +1,9 @@
 {
     "terminal.integrated.shell.windows": "powershell",
-    "terminal.integrated.shellArgs.windows": ["-NoExit", "-Command", "./Scripts/activate"]
+    "terminal.integrated.shellArgs.windows": [
+        "-NoExit",
+        "-Command",
+        "./Scripts/activate"
+    ],
+    "python.pythonPath": "c:\\Users\\Eric Yang\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
 }
